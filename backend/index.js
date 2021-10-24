@@ -29,7 +29,7 @@ expressApp.use((req, res, next) => {
         });
 });
 
-expressApp.use('/user', require('./routes/user'))
+expressApp.use('/reg', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
 
 expressApp.listen(3000, function() {
