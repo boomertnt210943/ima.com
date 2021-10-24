@@ -1,0 +1,33 @@
+<div>
+    <div class="container">
+        <div class="card" style="max-width: 100%; height:auto;">
+            <div class="card">
+                <div class="card-header">
+                    <h2 style="text-align: left;"><i class="fa fa-id-card" aria-hidden="true" style="color:rgb(40, 218, 170);"></i> Profile</h2>
+                </div>
+                <div class=" card-body ">
+                    <div class=" image d-flex flex-column justify-content-center align-items-center "> <button class="btn btn-secondary "> <img src={{profileURL}} height="auto "
+              width="200 " /></button>
+                        <span class="name mt-3 ">{{name}}</span>
+                        <span class="idd ">{{username}}</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h3 style="text-align: left;"><i class="fa fa-photo" aria-hidden="true" style="color:rgb(40, 218, 170);"></i> My Photo</h3>
+                    <div class="row ">
+                        <div *ngFor="let post of postIma" class="col-md-4">
+                            <div class="card" style="width: auto;">
+                                <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{post.imaName}}</h5>
+                                    <p class="card-text">{{post.imaDetail}}</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
