@@ -10,7 +10,8 @@ const key = "MY_KEY";
 var Schema = require("mongoose").Schema;
 
 const userSchema = Schema({
-    username: String,
+    name: String,
+    email: String,
     password: String,
 }, {
     collection: "users",
@@ -35,20 +36,21 @@ const compareHash = async(plainText, hashText) => {
     });
 };
 
-const findUser = (username) => {
+const findUser = (email) => {
     return new Promise((resolve, reject) => {
-        User.findOne({ username: username }, (err, data) => {
+        User.findOne({ email: email }, (err, data) => {
             if (err) {
                 reject(new Error("Cannot find username!"));
             } else {
                 if (data) {
                     resolve({
                         id: data._id,
-                        username: data.username,
+                        name: data.name,
+                        email: data.email,
                         password: data.password,
                     });
                 } else {
-                    reject(new Error("Cannot find username"));
+                    reject(new Error("Cannot find email"));
                 }
             }
         })
@@ -59,14 +61,15 @@ const findUser = (username) => {
 router.route("/signin")
     .post(async(req, res) => {
         const playload = {
-            username: req.body.username,
+            name: req.body.name,
+            email: req.body.email,
             password: req.body.password,
         };
 
         console.log(playload);
 
         try {
-            const result = await findUser(playload.username);
+            const result = await findUser(playload.email);
             const loginStatus = await compareHash(playload.password, result.password);
 
             const status = loginStatus.status;

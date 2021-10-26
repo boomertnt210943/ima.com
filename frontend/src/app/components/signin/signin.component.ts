@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-signin',
@@ -12,28 +13,36 @@ export class SigninComponent implements OnInit {
 
 
   authForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
-
-  constructor(private router: Router,private auth: AuthService) { }
+  name !: any
+  constructor(private router: Router, private auth: AuthService, public local: LocalStorageService) {
+   }
 
   ngOnInit(): void {
   }
 
-  signIn(){
+  get f() {
+    return this.authForm.controls;
+  }
+
+
+
+  signIn() {
     console.log(this.authForm.value);
     this.auth.signIn(this.authForm.value).subscribe(
       data => {
-        if(data.status == true){
+        if (data.status == true) {
+          console.log("user: " + data.result.id);
           this.router.navigate(['/home']);
-        }else{
-          alert('Username or Password is incorrect!');
+        } else {
+          alert('Email or Password is incorrect!');
         }
       },
       err => {
         console.log(err);
-        alert('Username or Password is incorrect!');
+        alert('Email or Password is incorrect!');
       }
     );
   }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
+import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-signup',
@@ -11,12 +13,18 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   authForm = new FormGroup({
-    name: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
+    name: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required]),
   });
 
-  constructor(private router: Router,private auth: AuthService) { }
+  get f(){
+    return this.authForm.controls;
+  }
+
+  user!: any
+
+  constructor(private router: Router,private auth: AuthService,) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +40,7 @@ export class SignupComponent implements OnInit {
         alert('Cannot insert user to DB!');
       }
     );
+    this.router.navigate(['/signin']);
   }
 
 }

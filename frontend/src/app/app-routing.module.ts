@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'upload', component: UploadComponent},
   {path: '',
-    redirectTo: 'signin',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 

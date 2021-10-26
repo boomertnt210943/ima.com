@@ -22,11 +22,10 @@ export class AuthService {
 
   }
   signUp(authData: any){
-    return this.http.post<any>('http://localhost:3000/user/signup', authData)
+    return this.http.post<any>('http://localhost:3000/reg/signup', authData)
       .pipe(map(data => {
         console.log(data);
         return data;
       }));
-
   }
 }

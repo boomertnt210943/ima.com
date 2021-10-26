@@ -2,7 +2,7 @@ interface images{
     imaId: string,
     imaName: string,
     imaUrl: string,
-    imaDetail: number,
+    imaDetail: string,
     like: boolean
 }
 
