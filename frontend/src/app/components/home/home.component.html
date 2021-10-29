@@ -15,7 +15,7 @@
         </div>
     </div>
 </div> -->
-
+<!--
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div *ngFor="let post of postIma" class="col">
@@ -28,6 +28,25 @@
                         <i class="fa fa-plus-square"></i>
                     </button>
                     <button type="button" class="btn btn-sm float-end" [ngClass]="{'btn-danger': post.like, 'btn-light': !post.like}" (click)="onClick(post)">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let item of images; index as i">
+            <div class="card" style="width: 100%;">
+                <img [src]="item.img" class="card-img-top" alt="item.img">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.detail}}</p>
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fa fa-plus-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm float-end" [ngClass]="{'btn-danger': item.like, 'btn-light': !item.like}" (click)="onClick(i)">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                     </button>
                 </div>

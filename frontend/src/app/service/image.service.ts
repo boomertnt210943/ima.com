@@ -1,18 +1,30 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { Image } from "../models/images";
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators'
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
-export class ImageService {
+export class ImagesService {
 
-  private images:Image[]=[];
-  
+  images: any
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  addImage(image: any) {
+    return this.http.post<any>('http://localhost:3000/images/img', image)
+      .pipe(map(data => { return data }))
+  }
+
+  getImages(){
+    return this.http.get<any>('http://localhost:3000/images/img')
+    .pipe(map(data => {
+      if(data){
+        this.images =data;
+        console.log(this.images);
+      }
+      return this.images;
+    }))
+  }
 
 }
+

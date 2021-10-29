@@ -2,6 +2,7 @@ const expressFunction = require('express');
 const mongoose = require('mongoose');
 var expressApp = expressFunction();
 
+
 const url = 'mongodb://localhost:27017/Art';
 const config = {
     autoIndex: true,
@@ -31,6 +32,7 @@ expressApp.use((req, res, next) => {
 
 expressApp.use('/reg', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
+expressApp.use('/images', require('./routes/images'))
 
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');

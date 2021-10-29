@@ -12,6 +12,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfilepageComponent } from './components/profilepage/profilepage.component';
 import { UploadComponent } from './components/upload/upload.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { UploadComponent } from './components/upload/upload.component';
     SigninComponent,
     SignupComponent,
     ProfilepageComponent,
-    UploadComponent
+    UploadComponent,
+    
   ],
   imports: [
     BrowserModule,
