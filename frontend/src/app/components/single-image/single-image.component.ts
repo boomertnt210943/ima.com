@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ImagesService } from 'src/app/service/image.service';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-single-image',
@@ -19,7 +19,7 @@ export class SingleImageComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private imas: ImagesService,
+    private imas: ImageService,
     ) {}
 
   ngOnInit(): void {

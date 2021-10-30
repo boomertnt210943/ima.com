@@ -2,13 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { Image } from "../models/images";
+import{Image} from "../models/Image"
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class ImagesService {
-
+export class ImageService {
   private images: Image[] = [];
   private images$ = new Subject<Image[]>()
   readonly url = "http://localhost:3000/api/images";
@@ -52,5 +51,5 @@ export class ImagesService {
     })
 
   }
-}
 
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Image } from '../../models/images';
-import { ImagesService } from 'src/app/service/image.service';
+import { Image } from '../../models/Image';
+import { ImageService } from 'src/app/service/image.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class UploadComponent implements OnInit {
   imageData!: string;
 
 
-  constructor(private ImageService: ImagesService) { }
+  constructor(private ImageService: ImageService) { }
 
   ngOnInit(): void {
   }

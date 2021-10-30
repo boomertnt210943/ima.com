@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { ImagesService } from 'src/app/service/image.service';
-import { Image } from 'src/app/models/images';
+import { ImageService } from 'src/app/service/image.service';
+import { Image } from 'src/app/models/Image';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 */
   //like: boolean = false;
 
-  constructor(private imgS: ImagesService) {
+  constructor(private imgS: ImageService) {
 
   }
   ngOnDestroy(): void {

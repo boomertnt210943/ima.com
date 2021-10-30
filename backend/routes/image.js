@@ -41,17 +41,17 @@ const getImages = async(req, res) => {
 };
 // storage
 const diskStorage = multer.diskStorage({
-    destination: (req, file, cd) => {
+    destination: (res, file, cd) => {
         cd(null, 'images')
     },
-    filename: (req, file, cd) => {
+    filename: (res, file, cd) => {
         const mimType = file.mimetype.split('/');
         const fileType = mimType[1]
         const fileName = file.originalname + '.' + fileType;
         cd(null, fileName)
     }
 })
-const fileFilter = (req, file, cd) => {
+const fileFilter = (res, file, cd) => {
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
     allowedMimeTypes.includes(file.mimetype) ? cd(null, true) : cd(null, false)
 }

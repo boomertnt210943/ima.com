@@ -1,22 +1,13 @@
 <!-- <p>home works!</p> -->
-<!-- <div class="container">
-    <div class="row">
-        <div *ngFor="let post of postIma" class="col-md-4">
-            <div class="card" style="width: auto;">
-                <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{post.imaName}}</h5>
-                    <p class="card-text">{{post.imaDetail}}</p>
-                    <a href="#" class="btn btn-sm float-end" [ngClass]="{'btn-danger': post.like, 'btn-light': !post.like}" (click)="onClick(post)" data-bs-toggle="modal" data-bs-target="#myModal">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
+<div *ngIf="images.length > 0">
+    <div *ngFor="let profile of images" class="profile">
+        <img [src]="profile.imagePath" [alt]="profile.name" />
+        <div>
+            <span>{{ profile.name }}</span>
         </div>
     </div>
-</div> -->
-<!--
-<div class="container">
+</div>
+<!-- <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div *ngFor="let post of postIma" class="col">
             <div class="card" style="width: 100%;">
@@ -34,7 +25,9 @@
             </div>
         </div>
     </div>
-</div>-->
+    </div>-->
+
+<!--
 <a [routerLink]="['/ima/0']" outerLinkActive="active" class="nav-link active">กดสิที่1</a>
 <a [routerLink]="['/ima/1']" outerLinkActive="active" class="nav-link active">กดสิที่2</a>
 <div class="container">
@@ -58,3 +51,4 @@
         </div>
     </div>
 </div>
+--->
