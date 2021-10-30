@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   images: any
 
-  postIma: imageModel = [
+  /*postIma: imageModel = [
     { "imaId": "1", "imaName": "WdqBvFe", "imaUrl": "https://i.pinimg.com/564x/97/f1/92/97f19270daf01554969db4c8b2012438.jpg", "imaDetail": "36", "like": true },
     { "imaId": "12", "imaName": "Menaka6", "imaUrl": "https://i.pinimg.com/564x/d0/ca/4e/d0ca4efa6354156f846b2e7acc54b9bf.jpg", "imaDetail": "24501", "like": false },
     { "imaId": "21", "imaName": "dkwqp][", "imaUrl": "https://i.pinimg.com/564x/75/0b/f0/750bf021aae3018a6069b97092324b08.jpg", "imaDetail": "23", "like": true },
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     { "imaId": "107", "imaName": "4eve9", "imaUrl": "https://i.pinimg.com/564x/2e/25/75/2e2575c8ea6860754b1dbd99c7ae7fc3.jpg", "imaDetail": "100", "like": false },
     { "imaId": "108", "imaName": "4eve10", "imaUrl": "https://i.pinimg.com/564x/b7/74/af/b774af4896eea67de93cc3476a12920e.jpg", "imaDetail": "100", "like": false },
   ]
-
+*/
   //like: boolean = false;
 
   constructor(private imgS: ImagesService) {
@@ -48,8 +48,8 @@ export class HomeComponent implements OnInit {
   }
 
   onClick(ima: any) {
-    let index = this.postIma.indexOf(ima);
-    this.postIma[index].like = !ima.like;
+    //let index = this.postIma.indexOf(ima);
+    //this.postIma[index].like = !ima.like;
     //console.log(this.postIma[index].like);
   }
   onLoading() {
