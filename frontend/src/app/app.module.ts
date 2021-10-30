@@ -11,6 +11,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilepageComponent } from './components/profilepage/profilepage.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { SingleImageComponent } from './components/single-image/single-image.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UploadComponent } from './components/upload/upload.component';
     SignupComponent,
     ProfilepageComponent,
     UploadComponent,
-    
+    SingleImageComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { imageModel } from 'src/app/image.module';
 import { ImagesService } from 'src/app/service/image.service';
+import { Image } from 'src/app/models/images';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  images: any
+  images: Image[] = [];
+  private imageSubscription!: Subscription;
 
   /*postIma: imageModel = [
     { "imaId": "1", "imaName": "WdqBvFe", "imaUrl": "https://i.pinimg.com/564x/97/f1/92/97f19270daf01554969db4c8b2012438.jpg", "imaDetail": "36", "like": true },
@@ -41,10 +43,19 @@ export class HomeComponent implements OnInit {
   //like: boolean = false;
 
   constructor(private imgS: ImagesService) {
-    this.onLoading()
+
+  }
+  ngOnDestroy(): void {
+    this.imageSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.imgS.getImages();
+    this.imageSubscription = this.imgS
+    .getImageStream()
+    .subscribe((images: Image[])=>{
+      this.images=images;
+    })
   }
 
   onClick(ima: any) {
@@ -52,17 +63,5 @@ export class HomeComponent implements OnInit {
     //this.postIma[index].like = !ima.like;
     //console.log(this.postIma[index].like);
   }
-  onLoading() {
-    try {
-      this.imgS.getImages().subscribe(
-        data => {
-          this.images = data;
-        },
-        err => {
-          console.log(err)
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
 }

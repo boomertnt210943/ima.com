@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Image } from '../../models/images';
 import { ImagesService } from 'src/app/service/image.service';
 
 
@@ -10,54 +11,42 @@ import { ImagesService } from 'src/app/service/image.service';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private imageService: ImagesService) { }
+  image!: Image;
+  imageData!: string;
+
+
+  constructor(private ImageService: ImagesService) { }
 
   ngOnInit(): void {
   }
-
   imageForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    detail: new FormControl('', [Validators.required]),
-    img: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      details: new FormControl('', [Validators.required])
   })
 
-  previewLoaded: boolean = false;
-
-  addImage() {
-    this.imageService.addImage(this.imageForm.value).subscribe(data => {
-      console.log(data)
-      alert('Image added successfully')
-      this.imageForm.reset();
-    }, err => {
-      console.log(err);
-
-    })
-  }
-
-  onChangeImg(e: any) {
-    if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      var pattern = /image-*/;
+  onFileSelect(event: Event) {
+    console.log("onFileSelect");
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.imageForm.patchValue({image: file});
+    const allowedMimeFileTypes = ["image/png", "image/jpeg", "image/jpg"];
+    if (file && allowedMimeFileTypes.includes(file.type)) {
       const reader = new FileReader();
-      if (!file.type.match(pattern)) {
-        alert('invalid format');
-        this.imageForm.reset();
-      } else {
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.previewLoaded = true
-          this.imageForm.patchValue({
-            img: reader.result
-          })
-        }
+      reader.onload = () => {
+        this.imageData = reader.result as string;
       }
+      reader.readAsDataURL(file);
     }
+
   }
 
-  resetForm() {
+  onSubmit() {
+    //console.log("submit Image")
+    this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
     this.imageForm.reset();
-    this.previewLoaded = false;
   }
+
 
 
 

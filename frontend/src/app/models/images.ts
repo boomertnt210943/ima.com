@@ -1,6 +1,6 @@
 export interface Image{
   _id: string,
   name: string,
-  imaDetail:string,
+  details:string,
   imagePath:string
 }

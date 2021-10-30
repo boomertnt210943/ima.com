@@ -1,6 +1,9 @@
 const expressFunction = require('express');
 const mongoose = require('mongoose');
 var expressApp = expressFunction();
+const path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 const url = 'mongodb://localhost:27017/Art';
@@ -29,10 +32,14 @@ expressApp.use((req, res, next) => {
             res.status(501).send('Connot connect to MongoDB')
         });
 });
+//app.use(bodyParser.json());
+expressApp.use(cors());
 
+
+expressApp.use('/images', expressFunction.static(path.join('images')));
 expressApp.use('/reg', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
-expressApp.use('/images', require('./routes/images'))
+expressApp.use('/api/images', require('./routes/image'));
 
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');

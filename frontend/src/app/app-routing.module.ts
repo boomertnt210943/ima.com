@@ -5,6 +5,7 @@ import { ProfilepageComponent } from './components/profilepage/profilepage.compo
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { SingleImageComponent } from './components/single-image/single-image.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'signin', component: SigninComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'upload', component: UploadComponent},
+  {path: 'ima/:text', component: SingleImageComponent},
   {path: '',
     redirectTo: 'home',
     pathMatch: 'full'

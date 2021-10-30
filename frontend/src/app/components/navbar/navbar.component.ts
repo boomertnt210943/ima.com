@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   signout(){
     this.local.clear();
     this.router.navigate(['/signin']);
