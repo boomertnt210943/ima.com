@@ -2,9 +2,9 @@ var express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
-var Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
 const authorization = require('../config/authorize')
+const Schema = require("mongoose").Schema,
+    ObjectId = Schema.ObjectId;
 
 //models
 const imageSchema = Schema({

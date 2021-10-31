@@ -11,6 +11,7 @@ import { LocalStorageService } from 'angular-web-storage';
 })
 export class SigninComponent implements OnInit {
 
+  show: boolean = false;
 
   authForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,7 +28,9 @@ export class SigninComponent implements OnInit {
     return this.authForm.controls;
   }
 
-
+  clickSignUp(){
+    this.show = !this.show;
+  }
 
   signIn() {
     console.log(this.authForm.value);

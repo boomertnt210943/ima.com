@@ -7,10 +7,9 @@
                 </div>
                 <div class=" card-body ">
                     <div class=" image d-flex flex-column justify-content-center align-items-center ">
-                        <button class="btn btn-secondary ">
-              <img src={{profileURL}} height="auto " width="200 " /></button>
-                        <span class="name mt-3 ">{{name}}</span>
-                        <span class="idd ">{{username}}</span>
+                        <img [src]="dataUser[0].img" height="auto" width="200">
+                        <span class="name mt-3 ">{{dataUser[0].name}}</span>
+                        <span class="idd ">{{dataUser[0].email}}</span>
 
                         <a routerLink="/edit" routerLinkActive="active" href="#">Edit Profile</a>
 
@@ -25,7 +24,7 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-img" role="tabpanel" aria-labelledby="my-img-tab">
-                            <app-my-images></app-my-images>
+                            <app-my-images [images]="dataUser[0].ima_all"></app-my-images>
                         </div>
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <app-favorites></app-favorites>

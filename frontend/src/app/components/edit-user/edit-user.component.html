@@ -10,11 +10,11 @@
                         <form [formGroup]="authForm">
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">New Profile Picture</label>
-                                <input class="form-control" type="file" id="formFile">
+                                <input class="form-control" type="file" (change)="onChangeImg($event)">
                             </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">New name</label>
-                                <input class="form-control" type="text" id="formFile" placeholder="{{name}}" formControlName="name">
+                                <input class="form-control" type="text" placeholder="บอกชื่อเราหน่อยสิ" formControlName="name">
                             </div>
                         </form>
                     </div>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-block btn-light" (click)="userUpdate()">😂Edit</button>
+                <button type="button" class="btn btn-success btn-block btn-info" (click)="userUpdate()">😂Edit</button>
             </div>
         </div>
     </div>

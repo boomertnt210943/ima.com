@@ -10,7 +10,7 @@ import { LocalStorageService } from 'angular-web-storage';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit{
 
   authForm = new FormGroup({
     name: new FormControl('',[Validators.required]),
@@ -32,9 +32,10 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   signUp(){
-    console.log(this.authForm.value);
-    this.auth.signUp(this.authForm.value).subscribe(
+      console.log(this.authForm.value);
+      this.auth.signUp(this.authForm.value).subscribe(
       data => {
         alert('Sign up successfully')
         this.authForm.reset();

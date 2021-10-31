@@ -15,7 +15,7 @@ import { SingleImageComponent } from './components/single-image/single-image.com
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { MyImagesComponent } from './components/my-images/my-images.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-
+import { FilterPipe } from './searchfilter/filter.pipe';
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FavoritesComponent,
     MyImagesComponent,
     EditUserComponent,
+    FilterPipe
 
   ],
   imports: [

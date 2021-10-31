@@ -12,7 +12,6 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'profile', component: ProfilepageComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'signup', component: SignupComponent},
   {path: 'upload', component: UploadComponent},
   {path: 'edit', component: EditUserComponent},
   {path: 'ima/:text', component: SingleImageComponent},
