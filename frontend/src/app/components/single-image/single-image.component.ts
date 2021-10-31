@@ -9,24 +9,45 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class SingleImageComponent implements OnInit {
 
-  public ima? : string;
-  post? : any;
-
-  postIma: any = [
-    { "imaId": "1", "imaName": "WdqBvFe", "imaUrl": "https://i.pinimg.com/564x/97/f1/92/97f19270daf01554969db4c8b2012438.jpg", "imaDetail": "36", "like": true },
-    { "imaId": "2", "imaName": "Menaka6", "imaUrl": "https://i.pinimg.com/564x/d0/ca/4e/d0ca4efa6354156f846b2e7acc54b9bf.jpg", "imaDetail": "24501", "like": false },
-  ]
+  public ima : string = '';
+  post : any;
 
   constructor(
     private router: ActivatedRoute,
     private imas: ImageService,
-    ) {}
+    ) {
+      this.onLoading();
+    }
 
   ngOnInit(): void {
-    this.ima = this.router.snapshot.params.text;
-    console.log(this.ima);
-    const ind = Number(this.ima);
-    this.post = this.postIma[ind];
+    console.log(this.post)
   }
 
+  onLoading(){
+    try{
+      this.imas.getOneImage(this.router.snapshot.params.text).subscribe(
+        data=>{
+          this.post = data;
+          console.log(this.post)
+        }, err =>{
+          console.log(err);
+        }
+      );
+    }catch(error){
+      console.log(error);
+    }
+  }
+    // this.ima = this.router.snapshot.params.text;
+    // console.log(this.ima);
+    // try{
+    //   this.imas.getOneImage().subscribe(
+    //     data=>{
+    //       this.post = data;
+    //     }, err =>{
+    //       console.log(err);
+    //     }
+    //   );
+    // }catch(error){
+    //   console.log(error);
+    // }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Image } from '../../models/Image';
+//import { Image } from '../../models/Image';
 import { ImageService } from 'src/app/service/image.service';
+import { LocalStorageService } from 'angular-web-storage';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class UploadComponent implements OnInit {
 
-  image!: Image;
+  image!: any;
   imageData!: string;
 
 
@@ -20,7 +21,7 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
   }
   imageForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
       details: new FormControl('', [Validators.required])
   })

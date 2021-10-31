@@ -1,50 +1,49 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/service/auth.service';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class SignupComponent implements OnInit {
+export class EditUserComponent implements OnInit {
 
+  name !: string
+  profileURL!:string
+userId: any;
   authForm = new FormGroup({
     name: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required]),
-    file: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
   });
   previewLoaded: boolean = false;
 
-  get f(){
-    return this.authForm.controls;
-  }
 
-  //user!: any
-
-  constructor(private router: Router,private auth: AuthService,) { }
+  constructor(private local: LocalStorageService,private router: Router,private auth: AuthService,) { }
 
   ngOnInit(): void {
+    this.userId= this.local.get('user').id
+    this.name=this.local.get('user').name
+    this.profileURL=this.local.get('user').img
   }
 
-  signUp(){
+  userUpdate(){
     console.log(this.authForm.value);
-    this.auth.signUp(this.authForm.value).subscribe(
+    this.auth.Update(this.userId,this.authForm.value).subscribe(
       data => {
-        alert('Sign up successfully')
+        alert('Update user successfully')
         this.authForm.reset();
+        this.router.navigateByUrl('/profile');
       },
       err => {
         console.log(err);
-        alert('Cannot insert user to DB!');
+        alert('Cannot update user!');
       }
     );
-    this.router.navigate(['/signin']);
   }
 
   onChangeImg(e: any) {
@@ -71,5 +70,7 @@ export class SignupComponent implements OnInit {
     this.authForm.reset();
     this.previewLoaded = false;
   }
+
+
 
 }

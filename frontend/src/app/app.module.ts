@@ -12,6 +12,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfilepageComponent } from './components/profilepage/profilepage.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { MyImagesComponent } from './components/my-images/my-images.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+
 
 
 @NgModule({
@@ -24,6 +28,9 @@ import { SingleImageComponent } from './components/single-image/single-image.com
     ProfilepageComponent,
     UploadComponent,
     SingleImageComponent,
+    FavoritesComponent,
+    MyImagesComponent,
+    EditUserComponent,
 
   ],
   imports: [

@@ -13,6 +13,8 @@ const userSchema = Schema({
     name: String,
     email: String,
     password: String,
+    file: String,
+    img: String,
 }, {
     collection: "users",
 });
@@ -48,6 +50,7 @@ const findUser = (email) => {
                         name: data.name,
                         email: data.email,
                         password: data.password,
+                        img: data.img,
                     });
                 } else {
                     reject(new Error("Cannot find email"));
@@ -61,7 +64,6 @@ const findUser = (email) => {
 router.route("/signin")
     .post(async(req, res) => {
         const playload = {
-            name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         };

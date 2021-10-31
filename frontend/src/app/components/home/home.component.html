@@ -1,54 +1,76 @@
 <!-- <p>home works!</p> -->
-<div *ngIf="images.length > 0">
-    <div *ngFor="let profile of images" class="profile">
-        <img [src]="profile.imagePath" [alt]="profile.name" />
-        <div>
-            <span>{{ profile.name }}</span>
-        </div>
-    </div>
-</div>
+
 <!-- <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div *ngFor="let post of postIma" class="col">
-            <div class="card" style="width: 100%;">
-                <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{post.imaName}}</h5>
-                    <p class="card-text">{{post.imaDetail}}</p>
-                    <button type="button" class="btn btn-secondary">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div *ngFor="let post of postIma" class="col">
+                <div class="card" style="width: 100%;">
+                    <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.imaName}}</h5>
+                        <p class="card-text">{{post.imaDetail}}</p>
+                        <button type="button" class="btn btn-secondary">
                         <i class="fa fa-plus-square"></i>
                     </button>
-                    <button type="button" class="btn btn-sm float-end" [ngClass]="{'btn-danger': post.like, 'btn-light': !post.like}" (click)="onClick(post)">
+                        <button type="button" class="btn btn-sm float-end" [ngClass]="{'btn-danger': post.like, 'btn-light': !post.like}" (click)="onClick(post)">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>-->
+</div>-->
 
-<!--
-<a [routerLink]="['/ima/0']" outerLinkActive="active" class="nav-link active">กดสิที่1</a>
-<a [routerLink]="['/ima/1']" outerLinkActive="active" class="nav-link active">กดสิที่2</a>
+
+<!-- <a [routerLink]="['/ima/0']" outerLinkActive="active" class="nav-link active">กดสิที่1</a>
+<a [routerLink]="['/ima/1']" outerLinkActive="active" class="nav-link active">กดสิที่2</a> -->
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div *ngFor="let item of images; index as i">
-            <div class="card" style="width: 100%;">
-                <a routerLink="ima/{{item.name}}" routerLinkActive="active" class="nav-link active">
-                    <img [src]="item.imagePath" class="card-img-top" alt="item.img">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">{{item.name}}</h5>
-                    <p class="card-text"></p>
-                    <button type="button" class="btn btn-secondary">
-                        <i class="fa fa-plus-square"></i>
+    <br>
+    <div class="col-md-12">
+        <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search" (input)="Search()">
+    </div>
+    <br>
+    <div [ngSwitch]="search">
+        <div *ngSwitchCase="">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div *ngFor="let item of images; index as i">
+                    <div class="card" style="width: 100%;">
+                        <a routerLink="/ima/{{item._id}}" routerLinkActive="active" class="nav-link active">
+                            <img [src]="item.imagePath" class="card-img-top" alt="{{item.imagePath}}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text">{{item.details}}</p>
+                            <button type="button" class="btn btn-secondary">
+                            <i class="fa fa-plus-square"></i>
                     </button>
-                    <button type="button" class="btn btn-sm float-end">
+                            <button type="button" class="btn btn-sm float-end">
                         <i class="fa fa-heart " aria-hidden="true "></i>
                     </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchDefault>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div *ngFor="let item of images; index as i">
+                    <div class="card" style="width: 100%;">
+                        <a routerLink="/ima/{{item._id}}" routerLinkActive="active" class="nav-link active">
+                            <img [src]="item.imagePath" class="card-img-top" alt="{{item.imagePath}}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text">{{item.details}}</p>
+                            <button type="button" class="btn btn-secondary">
+                            <i class="fa fa-plus-square"></i>
+                    </button>
+                            <button type="button" class="btn btn-sm float-end">
+                        <i class="fa fa-heart " aria-hidden="true "></i>
+                    </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
---->

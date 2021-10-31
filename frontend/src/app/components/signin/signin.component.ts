@@ -34,7 +34,8 @@ export class SigninComponent implements OnInit {
     this.auth.signIn(this.authForm.value).subscribe(
       data => {
         if (data.status == true) {
-          console.log("user: " + data.result.id);
+          console.log(data)
+          this.local.set('user',data.result)
           this.router.navigate(['/home']);
         } else {
           alert('Email or Password is incorrect!');

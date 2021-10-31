@@ -2,7 +2,8 @@ var express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
-var Schema = require("mongoose").Schema;
+var Schema = mongoose.Schema,
+    ObjectId = Schema.Types.ObjectId;
 const authorization = require('../config/authorize')
 
 //models
@@ -10,6 +11,7 @@ const imageSchema = Schema({
     name: { type: 'String', required: true },
     imagePath: { type: 'String', required: true },
     details: { type: 'String', required: true },
+    owner_id: { type: ObjectId, required: true }
 }, {
     collection: 'images'
 });
@@ -26,11 +28,13 @@ const postImage = async(req, res) => {
     console.log(req.body.name);
     const name = req.body.name
     const details = req.body.details
+    const owner_id = req.body.owner_id
     const imagePath = 'http://localhost:3000/images/' + req.file.filename; // Note: set path dynamically
     const image = new Image({
         name,
         imagePath,
-        details
+        details,
+        owner_id
     });
     const createImage = await image.save();
     res.status(200).json({ image: {...createImage._doc } })
@@ -39,7 +43,19 @@ const getImages = async(req, res) => {
     const images = await Image.find();
     res.status(200).json(images)
 };
-// storage
+
+const gettest = async(req, res) => {
+        Image.find({ _id: req.params.id }, (error, data) => {
+            if (error) {
+                console.log(error);
+                res.status(404).json(error);
+            } else {
+                console.log(data);
+                res.status(200).json(data);
+            }
+        });
+    }
+    // storage
 const diskStorage = multer.diskStorage({
     destination: (res, file, cd) => {
         cd(null, 'images')
@@ -58,7 +74,7 @@ const fileFilter = (res, file, cd) => {
 const storage = multer({ storage: diskStorage, fileFilter }).single('image')
 
 
-
+router.get('/pin/:id', gettest)
 router.get('/', getImages);
 router.post('/', storage, postImage);
 

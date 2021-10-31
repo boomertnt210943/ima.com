@@ -37,6 +37,7 @@ expressApp.use(cors())
 expressApp.use('/images', expressFunction.static(path.join('images')));
 expressApp.use('/reg', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
+expressApp.use('/user', require('./routes/updateUser'))
 expressApp.use('/api/images', require('./routes/image'));
 
 expressApp.listen(3000, function() {

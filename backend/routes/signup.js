@@ -8,6 +8,8 @@ const userSchema = Schema({
     name: String,
     email: String,
     password: String,
+    file: String,
+    img: String,
 }, {
     collection: 'users'
 });
@@ -26,11 +28,7 @@ const makeHash = async(plainText) => {
 
 const inserUser = (dataUser) => {
     return new Promise((resolve, reject) => {
-        var new_user = new User({
-            name: dataUser.name,
-            email: dataUser.email,
-            password: dataUser.password
-        });
+        var new_user = new User(dataUser);
         new_user.save((err, data) => {
             if (err) {
                 reject(new Error('Cannot insert user to DB!'))
@@ -48,7 +46,8 @@ router.route('/signup')
                 const playload = {
                     name: req.body.name,
                     email: req.body.email,
-                    password: hashText
+                    password: hashText,
+                    img: req.body.img,
                 }
                 console.log(playload);
                 inserUser(playload)

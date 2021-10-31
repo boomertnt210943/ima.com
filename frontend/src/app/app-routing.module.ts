@@ -6,6 +6,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'signin', component: SigninComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'upload', component: UploadComponent},
+  {path: 'edit', component: EditUserComponent},
   {path: 'ima/:text', component: SingleImageComponent},
   {path: '',
     redirectTo: 'home',

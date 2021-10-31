@@ -1,0 +1,12 @@
+<div class="row ">
+    <div *ngFor="let post of postIma" class="col-md-4">
+        <div class="card" style="width: auto;">
+            <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
+            <div class="card-body">
+                <h5 class="card-title">{{post.imaName}}</h5>
+                <p class="card-text">{{post.imaDetail}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>

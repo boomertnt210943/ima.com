@@ -1,16 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ImageService } from 'src/app/service/image.service';
 import { Image } from 'src/app/models/Image';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { Router } from '@angular/router';
+
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit{
 
-  images: Image[] = [];
+  search! : string;
+  title = 'Angular Search Using ng2-search-filter';
+  images!: Image[]
   private imageSubscription!: Subscription;
 
   /*postIma: imageModel = [
@@ -42,20 +46,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 */
   //like: boolean = false;
 
-  constructor(private imgS: ImageService) {
+  constructor(
+    private imgS: ImageService,
+    private router: Router
+    ) {
+    this.onLoading();
+  }
 
-  }
-  ngOnDestroy(): void {
-    this.imageSubscription.unsubscribe();
-  }
 
   ngOnInit(): void {
-    this.imgS.getImages();
-    this.imageSubscription = this.imgS
-    .getImageStream()
-    .subscribe((images: Image[])=>{
-      this.images=images;
-    })
   }
 
   onClick(ima: any) {
@@ -64,4 +63,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     //console.log(this.postIma[index].like);
   }
 
+  onLoading(){
+    try{
+      this.imgS.getImages().subscribe(
+        data=>{
+          this.images = data;
+        }, err =>{
+          console.log('It is error')
+          this.router.navigate(['/signin']);
+        }
+      );
+    }catch(error){
+      this.router.navigate(['/signin']);
+    }
+  }
+  ///สู้ๆๆนะครับ ✌️✌️
+  //เหมือนกันครับ 5555
+  Search(){
+
+  }
 }

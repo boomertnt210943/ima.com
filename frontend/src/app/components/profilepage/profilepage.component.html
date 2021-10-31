@@ -8,23 +8,27 @@
                 <div class=" card-body ">
                     <div class=" image d-flex flex-column justify-content-center align-items-center ">
                         <button class="btn btn-secondary ">
-                          <img src={{profileURL}} height="auto " width="200 " /></button>
+              <img src={{profileURL}} height="auto " width="200 " /></button>
                         <span class="name mt-3 ">{{name}}</span>
                         <span class="idd ">{{username}}</span>
+
+                        <a routerLink="/edit" routerLinkActive="active" href="#">Edit Profile</a>
+
                     </div>
                 </div>
                 <div class="card-footer">
-                    <h3 style="text-align: left;"><i class="fa fa-photo" aria-hidden="true" style="color:rgb(40, 218, 170);"></i> My Photo</h3>
-                    <div class="row ">
-                        <div *ngFor="let post of postIma" class="col-md-4">
-                            <div class="card" style="width: auto;">
-                                <img src="{{post.imaUrl}}" class="card-img-top" alt="{{post.imaName}}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{post.imaName}}</h5>
-                                    <p class="card-text">{{post.imaDetail}}</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="my-img-tab" data-bs-toggle="tab" data-bs-target="#nav-img" type="button" role="tab" aria-controls="nav-img" aria-selected="true">My Image</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Favorites</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-img" role="tabpanel" aria-labelledby="my-img-tab">
+                            <app-my-images></app-my-images>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <app-favorites></app-favorites>
                         </div>
                     </div>
                 </div>

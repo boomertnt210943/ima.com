@@ -1,15 +1,16 @@
 <div class="container">
+    <br/>
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-6">
-                <img src="post.imaUrl" class="img-fluid rounded-start" alt="post.imaUrl">
+                <img [src]="post[0].imagePath" class="img-fluid rounded-start" alt="{{post[0].imagePath}}">
             </div>
             <div class="col-md-6">
                 <div class="card-body">
-                    <h2 class="card-title">{{post.imaName}}</h2>
-                    <p class="card-text">{{post.imaDetail}}</p>
+                    <h2 class="card-title">{{post[0].name}}</h2>
+                    <p class="card-text">{{post[0].details}}</p>
                     <h4 class="card-title"><i class="fa fa-comment"></i>Comment</h4>
-                    <p class="card-text">{{post.imaDetail}}</p>
+                    <p class="card-text">ข้อความอะไรสักอย่าง</p>
                     <label for="exampleFormControlInput1" class="form-label">your comment</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ลองบอกได้นะว่าอยากจะบอกอะไรกับภาพนี้">
                     <br />
