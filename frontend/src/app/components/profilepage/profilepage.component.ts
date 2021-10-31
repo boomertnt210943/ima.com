@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'angular-web-storage';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-profilepage',
@@ -8,22 +9,19 @@ import { LocalStorageService } from 'angular-web-storage';
   styleUrls: ['./profilepage.component.css']
 })
 export class ProfilepageComponent implements OnInit {
+  dataUser: any
 
-
-  name !: string
-  username !: string
-  profileURL!:string
-  userId: any;
-
-  constructor(private local: LocalStorageService) { }
+  constructor(private local: LocalStorageService, private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.userId=this.local.get('user').id;
-    this.name=this.local.get('user').name
-    this.username =this.local.get('user').email
-    this.profileURL=this.local.get('user').img
-    //this.profileURL="https://sv1.picz.in.th/images/2021/10/24/uUPjQe.png"
+    let id  = this.local.get('user').id;
+    this.getUser(id);
   }
-
-
+  getUser(id: any) {
+    this.auth.getUser(id).subscribe(
+      dataUser => {
+        this.dataUser = dataUser;
+        console.log(dataUser)
+      })
+  }
 }

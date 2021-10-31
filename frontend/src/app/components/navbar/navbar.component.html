@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Ima.com</a>
+        <h1 class="navbar-brand" href="#">Ima.com</h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" *ngIf="showNav">
                 <li class="nav-item">
                     <a routerLink="home" routerLinkActive="active" class="nav-link active">Home</a>
                 </li>
@@ -21,11 +21,12 @@
                 <li class="nav-item">
                     <a routerLink="upload" routerLinkActive="active" class="nav-link active">Upload</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" [(ngModel)]="searchImg" (keyup)="search($event)" placeholder="search">
+                </div>
             </ul>
-            <button type="button" class="btn btn-dark" (click)="signout()">Sign Out</button>
+            <button type="button" class="btn btn-primary" *ngIf="showNav" (click)="signout()">Sign Out</button>
         </div>
     </div>
 </nav>
