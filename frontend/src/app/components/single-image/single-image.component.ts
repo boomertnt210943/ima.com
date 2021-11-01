@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-single-image',
@@ -9,8 +10,14 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class SingleImageComponent implements OnInit {
 
+  commentForm = new FormGroup({
+    nick_name : new FormControl('',[Validators.required]),
+    content : new FormControl('',[Validators.required]),
+  });
+
   public ima : string = '';
   post : any;
+  eventCheck! : number;
 
   constructor(
     private router: ActivatedRoute,
@@ -20,6 +27,7 @@ export class SingleImageComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.eventCheck = 0;
     console.log(this.post)
   }
 
@@ -50,4 +58,16 @@ export class SingleImageComponent implements OnInit {
     // }catch(error){
     //   console.log(error);
     // }
+
+    PostComment(){
+      const status = this.commentForm.status;
+      if(status == "VALID"){
+        this.imas.addComment(this.commentForm.value.nick_name,this.commentForm.value.content,this.post[0]._id);
+        this.commentForm.reset();
+        this.eventCheck++;
+        alert('คุณได้ comment เรียบร้อยแล้ว');
+      }else{
+        alert('ฮั่นแน่! ทำไมไม่กรอกข้อมูลให้ครบ');
+      }
+    }
 }

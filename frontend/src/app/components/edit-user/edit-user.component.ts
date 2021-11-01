@@ -14,26 +14,26 @@ import { AuthService } from 'src/app/service/auth.service';
 export class EditUserComponent implements OnInit {
 
   name !: string
-  profileURL!:string
-userId: any;
+  profileURL!: string
+  userId: any;
   authForm = new FormGroup({
-    name: new FormControl('',[Validators.required]),
+    name: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
   });
   previewLoaded: boolean = false;
 
 
-  constructor(private local: LocalStorageService,private router: Router,private auth: AuthService,) { }
+  constructor(private local: LocalStorageService, private router: Router, private auth: AuthService,) { }
 
   ngOnInit(): void {
-    this.userId= this.local.get('user').id
-    this.name=this.local.get('user').name
-    this.profileURL=this.local.get('user').img
+    this.userId = this.local.get('user').id
+    this.name = this.local.get('user').name
+    this.profileURL = this.local.get('user').img
   }
 
-  userUpdate(){
+  userUpdate() {
     console.log(this.authForm.value);
-    this.auth.Update(this.userId,this.authForm.value).subscribe(
+    this.auth.Update(this.userId, this.authForm.value).subscribe(
       data => {
         alert('Update user successfully')
         this.authForm.reset();

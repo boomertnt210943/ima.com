@@ -1,25 +1,31 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { Image } from "../models/Image"
+import { Image } from "../models/Image";
+import { Comment } from "../models/Comment";
 import { LocalStorageService } from "angular-web-storage";
 import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: "root",
 })
 export class ImageService {
+
+  private comments: Comment[] = [];
+  private comments$ = new Subject<Comment[]>()
   private images: Image[] = [];
   private images$ = new Subject<Image[]>()
-  readonly url = "http://localhost:3000/api/images";
+  readonly url = "http://localhost:3000/image";
+  readonly url_comment = "http://localhost:3000/comment";
   private oneIma?: Image;
+  private com?: Comment;
   public imageList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
   //UserId = this.local.get('user').id;
   constructor(private http: HttpClient, public local: LocalStorageService) { }
-
-
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   getImages() {
     // this.http
@@ -54,15 +60,35 @@ export class ImageService {
       }));
   }
 
+  getCommentInImage(imaid: string){
+    return this.http.get<any>(this.url_comment+'/allcom/'+imaid)
+      .pipe(map(data => {
+        if (data) {
+          this.com = data;
+          console.log(this.com);
+        }
+        return this.com
+      }));
+  }
+
   getImageStream() {
     return this.images$.asObservable();
     //return this.imageList.asObservable();
   }
 
+  addComment(nickName: string, content: string, ima_comment: string): void {
+    this.http
+      .post<any>(this.url_comment, {"nick_name": nickName,"content": content,"ima_comment": ima_comment})
+      .subscribe({
+        error: error => {
+            console.error('There was an error!', error);
+        }
+    })
+  }
+
 
   addImage(name: string, image: File, details: string): void {
     const imageData = new FormData();
-
     imageData.append("name", name);
     imageData.append("details", details);
     imageData.append("image", image, name);
@@ -81,6 +107,23 @@ export class ImageService {
         this.images$.next(this.images);
       })
 
+  }
+
+  UpdateimaName(id: any, newdata: string) {
+    let url_ima = `${this.url}/update/${id}`;
+    return this.http.put(url_ima,{ "name" : newdata })
+      .pipe(map(data => {
+        console.log(data);
+        return data;
+      }));
+  }
+  Updateimadetail(id: any, newdata: string) {
+    let url_ima = `${this.url}/update/${id}`;
+    return this.http.put(url_ima,{ "details" : newdata })
+      .pipe(map(data => {
+        console.log(data);
+        return data;
+      }));
   }
 
 }

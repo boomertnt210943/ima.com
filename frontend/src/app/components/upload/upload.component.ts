@@ -1,8 +1,10 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 //import { Image } from '../../models/Image';
 import { ImageService } from 'src/app/service/image.service';
 import { LocalStorageService } from 'angular-web-storage';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,13 +18,14 @@ export class UploadComponent implements OnInit {
   imageData!: string;
 
 
-  constructor(private ImageService: ImageService) { }
+  constructor(private ImageService: ImageService,private router: Router) { }
 
   ngOnInit(): void {
   }
   imageForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
+      file: new FormControl('', [Validators.required]),
       details: new FormControl('', [Validators.required])
   })
 
@@ -46,6 +49,7 @@ export class UploadComponent implements OnInit {
     //console.log("submit Image")
     this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
     this.imageForm.reset();
+
   }
 
 

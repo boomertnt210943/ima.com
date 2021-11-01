@@ -39,16 +39,38 @@
                                 </div>
                                 <p class=" text-center text-muted mt-5 mb-0 ">You haven't account!
                                     <!-- <a href="signup" class="fw-bold text-body "><u>Signup here</u></a> -->
-                                    <button type="button" class="btn btn-info" (click)="clickSignUp()">Signup here</button>
+                                    <!--<button type="button" class="btn btn-info" (click)="clickSignUp()">Signup here</button> -->
+                                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">  SignUp</a>
                                 </p>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row ">
+            <!--<div class="row ">
                 <app-signup *ngIf="show"></app-signup>
+            </div> -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-tittle"></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <app-signup></app-signup>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </section>

@@ -21,11 +21,15 @@
                 <li class="nav-item">
                     <a routerLink="upload" routerLinkActive="active" class="nav-link active">Upload</a>
                 </li>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" [(ngModel)]="searchImg" (keyup)="search($event)" placeholder="search">
+                <div class="d-flex">
+                    <input type="text" class="form-control" [(ngModel)]="searchImg" (keyup)="search($event)" placeholder="Search">
                 </div>
             </ul>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="button" class="btn btn-primary" *ngIf="showNav" (click)="signout()">Sign Out</button>
         </div>
     </div>

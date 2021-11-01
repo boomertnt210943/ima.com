@@ -2,7 +2,7 @@ var express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
-const authorization = require('../config/authorize')
+//const authorization = require('../config/authorize')
 const Schema = require("mongoose").Schema,
     ObjectId = Schema.ObjectId;
 
@@ -44,7 +44,7 @@ const getImages = async(req, res) => {
     res.status(200).json(images)
 };
 
-const gettest = async(req, res) => {
+const getOneIma = async(req, res) => {
         Image.find({ _id: req.params.id }, (error, data) => {
             if (error) {
                 console.log(error);
@@ -74,8 +74,26 @@ const fileFilter = (res, file, cd) => {
 const storage = multer({ storage: diskStorage, fileFilter }).single('image')
 
 
-router.get('/pin/:id', gettest)
+router.get('/pin/:id', getOneIma)
 router.get('/', getImages);
 router.post('/', storage, postImage);
+
+
+router.route('/update/:id')
+    .put((req, res, next) => {
+        Image.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        }, (error, data) => {
+            if (error) {
+                return next(error);
+                console.log(error)
+            } else {
+                res.json(data)
+                console.log('Data updated successfully')
+
+                console.log(data)
+            }
+        })
+    });
 
 module.exports = router;

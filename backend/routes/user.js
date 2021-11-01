@@ -18,7 +18,7 @@ let User
 try {
     User = mongoose.model('users');
 } catch (error) {
-    User = mongoose.model('users', user);
+    User = mongoose.model('users', userSchema);
 }
 
 

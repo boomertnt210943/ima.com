@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./profilepage.component.css']
 })
 export class ProfilepageComponent implements OnInit {
+
   dataUser: any
 
   constructor(private local: LocalStorageService, private auth: AuthService) {}

@@ -38,7 +38,8 @@ expressApp.use('/images', expressFunction.static(path.join('images')));
 expressApp.use('/reg', require('./routes/signup'))
 expressApp.use('/login', require('./routes/signin'))
 expressApp.use('/user', require('./routes/user'))
-expressApp.use('/api/images', require('./routes/image'));
+expressApp.use('/image', require('./routes/image'))
+expressApp.use('/comment', require('./routes/comment'))
 
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');

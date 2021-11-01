@@ -19,11 +19,12 @@
                         </form>
                     </div>
                     <div class="col-md-6">
+                        <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.authForm.value.img" style="height:150px;">
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-block btn-info" (click)="userUpdate()">😂Edit</button>
+                <button type="button" class="btn btn-success btn-block btn-info" (click)="userUpdate()">Edit</button>
             </div>
         </div>
     </div>

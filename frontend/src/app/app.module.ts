@@ -16,6 +16,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { MyImagesComponent } from './components/my-images/my-images.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { FilterPipe } from './searchfilter/filter.pipe';
+import { EditImageComponent } from './components/edit-image/edit-image.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { FilterPipe } from './searchfilter/filter.pipe';
     FavoritesComponent,
     MyImagesComponent,
     EditUserComponent,
-    FilterPipe
+    FilterPipe,
+    EditImageComponent,
+    CommentsComponent
 
   ],
   imports: [
