@@ -63,5 +63,29 @@ router.route('/delete/:id')
         })
     })
 
+router.route('/user/:id')
+    .get((req, res, next) => {
+        const idUser = req.params.id
+        LikeImage.aggregate([{
+                    $match: {
+                        owner_id: ObjectId(idUser)
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "images",
+                        localField: "ima_like",
+                        foreignField: "_id",
+                        as: "image",
+                    }
+                }
+            ])
+            .then(data => {
+                res.json(data);
+            })
+            .catch(err => {
+                return next(err);
+            })
+    });
 
 module.exports = router

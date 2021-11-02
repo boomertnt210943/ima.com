@@ -24,10 +24,12 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-img" role="tabpanel" aria-labelledby="my-img-tab">
+                            <br>
                             <app-my-images [images]="dataUser[0].ima_all"></app-my-images>
                         </div>
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            <app-favorites></app-favorites>
+                            <br>
+                            <app-favorites [images]="dataUser[0].ima_all"> </app-favorites>
                         </div>
                     </div>
                 </div>

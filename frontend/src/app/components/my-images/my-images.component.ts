@@ -23,8 +23,6 @@ export class MyImagesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    let id = this.local.get('user').id
-    //console.log(id)
   }
 
 
