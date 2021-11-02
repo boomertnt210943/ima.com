@@ -100,7 +100,7 @@ export class ImageService {
   }
 
 
-  addImage(token:any,name: string, image: File, details: string): void {
+  addImage(name: string, image: File, details: string): void {
     const imageData = new FormData();
     imageData.append("name", name);
     imageData.append("details", details);

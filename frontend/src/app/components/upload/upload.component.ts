@@ -50,8 +50,13 @@ export class UploadComponent implements OnInit {
 
   onSubmit() {
     //console.log("submit Image")
-    this.ImageService.addImage(this.token,this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
-    this.imageForm.reset();
+    if(!(this.imageForm.value.image === ''||this.imageForm.value.name === '')){
+      this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
+      //this.imageForm.reset();
+      this.router.navigate(['/home'])
+    }else{
+      alert('กรอกชื่อและเลือกภาพด้วย!!!');
+    }
 
   }
 

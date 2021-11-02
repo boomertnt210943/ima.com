@@ -35,11 +35,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text">{{item.details}}</p>
-                    <button type="button" class="btn btn-secondary">
-                            <i class="fa fa-plus-square"></i>
-                    </button>
-                    <button type="button" (click)="ngClassMethod(item._id)" class="btn btn-sm float-end">
-                        <i class="fa fa-heart " aria-hidden="true" [ngClass]="{'red-color': thisLike(item._id)}"></i>
+
+                    <button type="button" (click)="ngClassMethod(item._id)" class="btn btn-xl float-end">
+                        <h4><i class="fa fa-heart " aria-hidden="true" [ngClass]="{'red-color': thisLike(item._id)}"></i></h4>
                     </button>
                 </div>
             </div>
