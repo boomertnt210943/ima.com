@@ -16,9 +16,12 @@ export class UploadComponent implements OnInit {
 
   image!: any;
   imageData!: string;
+  token: any;
 
 
-  constructor(private ImageService: ImageService,private router: Router) { }
+  constructor(private ImageService: ImageService,private router: Router,private local:LocalStorageService) {
+    this.token = this.local.get('user').token
+   }
 
   ngOnInit(): void {
   }
@@ -47,7 +50,7 @@ export class UploadComponent implements OnInit {
 
   onSubmit() {
     //console.log("submit Image")
-    this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
+    this.ImageService.addImage(this.token,this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
     this.imageForm.reset();
 
   }

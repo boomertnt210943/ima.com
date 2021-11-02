@@ -40,6 +40,7 @@ expressApp.use('/login', require('./routes/signin'))
 expressApp.use('/user', require('./routes/user'))
 expressApp.use('/image', require('./routes/image'))
 expressApp.use('/comment', require('./routes/comment'))
+expressApp.use('/like', require('./routes/likeima'))
 
 expressApp.listen(3000, function() {
     console.log('Listening on port 3000');

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=Fredoka+One&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@300;400;500&family=Press+Start+2P&family=Pridi:wght@300&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200;400;500&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+.upload {
+    font-family: 'Mitr', sans-serif;
+}
+
+.p-3 {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+}
+
+.d-flex {
+    font-family: 'Mitr', sans-serif;
+}

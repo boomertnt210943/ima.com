@@ -50,6 +50,8 @@ const getCommentAll = async(req, res) => {
     res.status(200).json(comment)
 };
 
+
+
 router.get('/allcom/:id', getCommentInIma);
 router.post('/', postComment);
 router.get('/', getCommentAll);

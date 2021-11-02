@@ -2,6 +2,7 @@ var express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const authorization = require('../config/authorize');
 //const authorization = require('../config/authorize')
 const Schema = require("mongoose").Schema,
     ObjectId = Schema.ObjectId;
@@ -95,5 +96,18 @@ router.route('/update/:id')
             }
         })
     });
+
+router.route('/delete/:id')
+    .delete((req, res, next) => {
+        Image.findByIdAndDelete(req.params.id, (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.status(200).json({
+                    msg: data
+                })
+            }
+        })
+    })
 
 module.exports = router;

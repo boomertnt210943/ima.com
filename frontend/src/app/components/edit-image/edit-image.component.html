@@ -30,8 +30,11 @@
                             <button type="button" routerLink="/profile" class="btn btn-primary"><i class="fa fa-id-card" aria-hidden="true"> Profile</i></button>
                         </div>
                         <div class="col-md-6 d-flex justify-content-md-start">
-                            <button type="button" class="btn btn-danger"><i class="fa fa-eraser" aria-hidden="true"> Delete</i></button>
+                            <button type="button" class="btn btn-danger" (click)="deleteImg()"><i class="fa fa-eraser" aria-hidden="true"> Delete</i></button>
                         </div>
+                    </div>
+                    <div class="row">
+                        <app-comments></app-comments>
                     </div>
                     <br />
                 </div>
