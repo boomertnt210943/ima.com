@@ -13,16 +13,16 @@ export class EditImageComponent implements OnInit {
   public ima: string = '';
   post: any;
 
-  imaID= this.ActivatedRoute.snapshot.params.text
+  imaID = this.ActivatedRoute.snapshot.params.text
 
   name = new FormControl('', [Validators.required])
   details = new FormControl('', [Validators.required])
   token = this.local.get('user').token
 
   constructor(private ActivatedRoute: ActivatedRoute,
-     private imas: ImageService,
-     private router:Router,
-     public local: LocalStorageService) {
+    private imas: ImageService,
+    private router: Router,
+    public local: LocalStorageService) {
     this.onLoading();
 
   }
@@ -46,9 +46,9 @@ export class EditImageComponent implements OnInit {
     }
   }
 
-  nameUpdate(){
+  nameUpdate() {
     console.log(this.name.value);
-    this.imas.UpdateimaName(this.imaID,this.name.value).subscribe(
+    this.imas.UpdateimaName(this.imaID, this.name.value).subscribe(
       data => {
         alert('Update name successfully')
         this.name.reset();
@@ -61,7 +61,7 @@ export class EditImageComponent implements OnInit {
 
   }
 
-  detailsUpdate(){
+  detailsUpdate() {
     console.log(this.details.value);
     this.imas.Updateimadetail(this.imaID, this.details.value).subscribe(
       data => {
@@ -76,17 +76,31 @@ export class EditImageComponent implements OnInit {
 
   }
 
-  deleteImg(){
-    this.imas.deleteImg(this.imaID).subscribe(
-      data =>{
-        alert('Delete image successfully')
-        this.router.navigate(['/profile'])
-      },
-      err =>{
-        console.log(err);
-        alert('Cannot delete image!');
-      }
-    )
+  deleteImg() {
+    try {
+      this.imas.deleteImg(this.imaID).subscribe(
+        data => {
+          alert('Delete image successfully')
+          this.router.navigate(['/profile'])
+        },
+        err => {
+          console.log(err);
+          alert('Cannot delete image!');
+        }
+      )
+
+      this.imas.deleteComment(this.imaID).subscribe(
+        data => {
+          this.router.navigate(['/profile'])
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    }catch(error){
+      console.log('It is error')
+    }
+
   }
 
 }
