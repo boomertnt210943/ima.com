@@ -26,7 +26,7 @@ export class EditUserComponent implements OnInit {
   previewLoaded: boolean = false;
 
 
-  constructor(private local: LocalStorageService, private router: Router, private auth: AuthService,) { }
+  constructor(private local: LocalStorageService, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.token = this.local.get('user').token

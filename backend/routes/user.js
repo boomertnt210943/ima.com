@@ -41,26 +41,6 @@ router.route('/update/:id')
 
     });
 
-// router.route('/user/:id')
-//     .get((req, res, next) => {
-//         User.findById(req.params.id, (error, data) => {
-//             if (error) {
-//                 return next(error)
-//             } else {
-//                 res.json(data)
-//             }
-//         })
-//     });
-// .get((req, res, next) => {
-//     User.findById(req.params.id).
-//        populate('images').
-//        exec(error, data) => {
-//         if (error) {
-//             return next(error)
-//         } else {
-//             res.json(data)
-//         }
-//     })
 router.route('/user/:id')
     .get((req, res, next) => {
         const idUser = req.params.id

@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-//import { Image } from '../../models/Image';
 import { ImageService } from 'src/app/service/image.service';
 import { LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
@@ -48,10 +47,8 @@ export class UploadComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log("submit Image")
     if(!(this.imageForm.value.image === ''||this.imageForm.value.name === ''||this.imageForm.value.details==='')){
       this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
-      //this.imageForm.reset();
       alert('คุณเพิ่มรูปภาพสำเร็จเเล้ว');
       this.router.navigate(['/home'])
     }else{

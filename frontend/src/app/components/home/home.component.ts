@@ -4,6 +4,7 @@ import { Image } from 'src/app/models/Image';
 import { LikeImage } from 'src/app/models/LikeImage';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
+import { ElementRef } from '@angular/core';
 
 import { delay } from 'rxjs/operators';
 
@@ -20,14 +21,14 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
   searchKey:string ="";
   public images!: Image[];
   ownerlike!: any;
-  private imageSubscription!: Subscription;
   like!: boolean;
   token:any;
 
   constructor(
     private imgS: ImageService,
     private router: Router,
-    private local: LocalStorageService
+    private local: LocalStorageService,
+    private elementRef: ElementRef
     ){
         this.onLoading();
         this.onloadingLike();
@@ -35,12 +36,14 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
 
 
   ngOnInit(): void {
-    console.log(this.local.get('user').result.id)
+  console.log(this.local.get('user').token);
+
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#d7ffef'
     this.like = false;
-    console.log(this.local.get('user') === null);
     this.imgS.search.subscribe((val:any)=>{
       this.searchKey = val;
     })
+
   }
 
   ngDoCheck(): void{
@@ -66,11 +69,11 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
           this.images = data;
         }, err =>{
           console.log(err)
-          this.router.navigate(['/signin']);
+          //this.router.navigate(['/signin']);
         }
       );
     }catch(error){
-      this.router.navigate(['/signin']);
+      //this.router.navigate(['/signin']);
     }
   }
 
@@ -85,7 +88,7 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
         }
       );
     }catch(error){
-      this.router.navigate(['/signin']);
+      //this.router.navigate(['/signin']);
     }
   }
 
@@ -98,7 +101,6 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
   }
 
   ngClassMethod(id_ima: string){
-    console.log('it work!')
     if(this.thisLike(id_ima)){
       let index = this.ownerlike.findIndex((a:any) => a.ima_like === id_ima)
       let id = this.ownerlike[index]._id;

@@ -12,6 +12,7 @@ export class EditImageComponent implements OnInit {
 
   public ima: string = '';
   post: any;
+  allComment: any;
 
   imaID = this.ActivatedRoute.snapshot.params.text
 
@@ -24,11 +25,26 @@ export class EditImageComponent implements OnInit {
     private router: Router,
     public local: LocalStorageService) {
     this.onLoading();
-
+    this.onLoadingComment();
   }
 
   ngOnInit(): void {
 
+  }
+
+  onLoadingComment(){
+    try{
+      this.imas.getCommentInImage(this.ActivatedRoute.snapshot.params.text).subscribe(
+        data=>{
+          this.allComment = data;
+          console.log(this.allComment)
+        }, err =>{
+          console.log(err);
+        }
+      );
+    }catch(error){
+      console.log(error);
+    }
   }
 
   onLoading() {

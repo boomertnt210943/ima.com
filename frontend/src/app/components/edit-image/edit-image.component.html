@@ -1,85 +1,81 @@
-<section class="vh-100 " style="background-image: url('https://images.unsplash.com/photo-1510935813936-763eb6fbc613?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2078&q=80');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container h-100">
-            <br/>
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img [src]="post[0].imagePath" class="img-fluid rounded-start" alt="{{post[0].imagePath}}">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <div class="row mb-md-3">
-                                <div class="col-md-8 ">
-                                    <h2 class="card-title">{{post[0].name}}</h2>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#Modal-name"> แก้ไขชื่อรูปภาพ</i></button>
-                                </div>
-                            </div>
-                            <div class="row">
-                            </div>
-                            <div class="row mb-md-3">
-                                <div class="col-md-8">
-                                    <p class="card-text">{{post[0].details}}</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#Modal-details"> แก้ไขคำอธิบาย</i></button>
-                                </div>
-                            </div>
-                            <div class="row mb-md-3">
-                                <div class="col-md-6 d-flex justify-content-md-end">
-                                    <button type="button" routerLink="/profile" class="btn btn-primary"><i class="fa fa-id-card" aria-hidden="true"> Profile</i></button>
-                                </div>
-                                <div class="col-md-6 d-flex justify-content-md-start">
-                                    <button type="button" class="btn btn-danger" (click)="deleteImg()"><i class="fa fa-eraser" aria-hidden="true"> Delete</i></button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <app-comments></app-comments>
-                            </div>
-                            <br />
+<div class="container-fluid ">
+    <br/>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img [src]="post[0].imagePath" class="img-fluid rounded-start" alt="{{post[0].imagePath}}">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="row mb-md-3">
+                        <div class="col-md-8 ">
+                            <h2 class="card-title">{{post[0].name}}</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#Modal-name"> แก้ไขชื่อรูปภาพ</i></button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="Modal-name" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Image name</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="row">
                     </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" [formControl]='name' placeholder="{{post[0].name}}">
+                    <div class="row mb-md-3">
+                        <div class="col-md-8">
+                            <p class="card-text">{{post[0].details}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#Modal-details"> แก้ไขคำอธิบาย</i></button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="nameUpdate()">Save changes</button>
+                    <div class="row mb-md-3">
+                        <div class="col-md-6 d-flex justify-content-md-end">
+                            <button type="button" routerLink="/profile" class="btn btn-primary"><i class="fa fa-id-card" aria-hidden="true"> Profile</i></button>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-md-start">
+                            <button type="button" class="btn btn-danger" (click)="deleteImg()"><i class="fa fa-eraser" aria-hidden="true"> Delete</i></button>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="Modal-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="row">
+                        <app-comments [CheckComment]="allComment"></app-comments>
                     </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" [formControl]='details' placeholder="{{post[0].details}}">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="detailsUpdate()">Save changes</button>
-                    </div>
+                    <br />
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal-name" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" [formControl]='name' placeholder="{{post[0].name}}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="nameUpdate()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="Modal-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" [formControl]='details' placeholder="{{post[0].details}}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="detailsUpdate()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

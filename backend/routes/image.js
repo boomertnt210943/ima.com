@@ -45,6 +45,7 @@ const getImages = async(req, res) => {
     res.status(200).json(images)
 };
 
+
 const getOneIma = async(req, res) => {
         Image.find({ _id: req.params.id }, (error, data) => {
             if (error) {
@@ -91,7 +92,6 @@ router.route('/update/:id')
             } else {
                 res.json(data)
                 console.log('Data updated successfully')
-
                 console.log(data)
             }
         })

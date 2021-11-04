@@ -25,8 +25,6 @@ export class SignupComponent implements OnInit{
     return this.authForm.controls;
   }
 
-  //user!: any
-
   constructor(private router: Router,private auth: AuthService,) { }
 
   ngOnInit(): void {

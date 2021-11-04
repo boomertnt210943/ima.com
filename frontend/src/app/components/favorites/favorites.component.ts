@@ -12,7 +12,6 @@ import { LocalStorageService } from 'angular-web-storage';
 })
 export class FavoritesComponent implements OnInit {
 
-  @Input() images!: Image[];
   ownerlike!: any;
   //images!: Image[];
   constructor(
@@ -42,21 +41,6 @@ export class FavoritesComponent implements OnInit {
       );
     }catch(error){
       console.log(error)
-    }
-  }
-
-  onLoading(){
-    try{
-      this.imgS.getImages().subscribe(
-        data=>{
-          console.log('data',data)
-          this.images = data;
-        }, err =>{
-          console.log('It is error')
-        }
-      );
-    }catch(error){
-      console.log('It is error')
     }
   }
 

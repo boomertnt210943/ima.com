@@ -35,7 +35,6 @@ export class SigninComponent implements OnInit {
       data => {
         if (data.status == true) {
           console.log(data)
-          //this.local.set('user',data.result)
           this.router.navigate(['/home']);
         } else {
           alert('Email or Password is incorrect!');

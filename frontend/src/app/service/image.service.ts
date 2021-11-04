@@ -33,7 +33,6 @@ export class ImageService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   getImages() {
-    //const headers={'authorization':token}
     return this.http.get<any>(this.url)
       .pipe(map(data => {
         if (data) {
@@ -90,17 +89,15 @@ export class ImageService {
 
   getImageStream() {
     return this.images$.asObservable();
-    //return this.imageList.asObservable();
   }
 
-  addComment(nickName: string, content: string, ima_comment: string): void {
-    this.http
+  addComment(nickName: string, content: string, ima_comment: string) {
+    return this.http
       .post<any>(this.url_comment, {"nick_name": nickName,"content": content,"ima_comment": ima_comment})
-      .subscribe({
-        error: error => {
-            console.error('There was an error!', error);
-        }
-    })
+      .pipe(map(data => {
+        console.log(data);
+        return data;
+      }));
   }
 
   addLike(ima_like: String) {
@@ -153,7 +150,7 @@ export class ImageService {
 
   deleteImg(id:any){
     let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url,{ headers: this.headers })
+    return this.http.delete<any>(url,{ headers: this.headers })
       .pipe(map(data => {
         console.log(data);
         return data;

@@ -18,12 +18,14 @@ export class SingleImageComponent implements OnInit {
   public ima : string = '';
   post : any;
   eventCheck! : number;
+  allComment :any;
 
   constructor(
     private router: ActivatedRoute,
     private imas: ImageService,
     ) {
       this.onLoading();
+      this.onLoadingComment();
     }
 
   ngOnInit(): void {
@@ -45,27 +47,31 @@ export class SingleImageComponent implements OnInit {
       console.log(error);
     }
   }
-    // this.ima = this.router.snapshot.params.text;
-    // console.log(this.ima);
-    // try{
-    //   this.imas.getOneImage().subscribe(
-    //     data=>{
-    //       this.post = data;
-    //     }, err =>{
-    //       console.log(err);
-    //     }
-    //   );
-    // }catch(error){
-    //   console.log(error);
-    // }
 
-    PostComment(){
+  onLoadingComment(){
+    try{
+      this.imas.getCommentInImage(this.router.snapshot.params.text).subscribe(
+        data=>{
+          this.allComment = data;
+          console.log(this.allComment)
+        }, err =>{
+          console.log(err);
+        }
+      );
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  PostComment(){
       const status = this.commentForm.status;
       if(status == "VALID"){
-        this.imas.addComment(this.commentForm.value.nick_name,this.commentForm.value.content,this.post[0]._id);
+        this.imas.addComment(this.commentForm.value.nick_name,this.commentForm.value.content,this.post[0]._id).subscribe(
+        );
         this.commentForm.reset();
         this.eventCheck++;
         alert('คุณได้ comment เรียบร้อยแล้ว');
+        this.onLoadingComment();
       }else{
         alert('ฮั่นแน่! ทำไมไม่กรอกข้อมูลให้ครบ');
       }
