@@ -1,3 +1,5 @@
+import { NavbarComponent } from './../navbar/navbar.component';
+import { Image } from 'src/app/models/Image';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +18,7 @@ export class EditUserComponent implements OnInit {
   name !: string
   profileURL!: string
   userId: any;
+  token:any;
   authForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
@@ -26,24 +29,52 @@ export class EditUserComponent implements OnInit {
   constructor(private local: LocalStorageService, private router: Router, private auth: AuthService,) { }
 
   ngOnInit(): void {
-    this.userId = this.local.get('user').id
-    this.name = this.local.get('user').name
-    this.profileURL = this.local.get('user').img
+    this.token = this.local.get('user').token
+    this.userId = this.local.get('user').result.id
+    this.name = this.local.get('user').result.name
+    this.profileURL = this.local.get('user').result.img
+
   }
 
   userUpdate() {
-    console.log(this.authForm.value);
-    this.auth.Update(this.userId, this.authForm.value).subscribe(
-      data => {
-        alert('Update user successfully')
-        this.authForm.reset();
-        this.router.navigateByUrl('/profile');
-      },
-      err => {
-        console.log(err);
-        alert('Cannot update user!');
-      }
-    );
+    console.log(this.authForm.value)
+    if(!(this.authForm.value.name===''||this.authForm.value.img==='')){
+      this.auth.Update(this.userId, this.authForm.value).subscribe(
+        data => {
+          alert('Update user successfully')
+          this.authForm.reset();
+          this.router.navigateByUrl('/profile');
+        },
+        err => {
+          console.log(err);
+          alert('Cannot update user!');
+        }
+      );
+    }else if(!(this.authForm.value.name==='')){
+      this.auth.Update(this.userId, {name:this.authForm.value.name}).subscribe(
+        data => {
+          alert('Update user successfully')
+          this.authForm.reset();
+          this.router.navigateByUrl('/profile');
+        },
+        err => {
+          console.log(err);
+          alert('Cannot update user!');
+        }
+      );
+    }else if(!(this.authForm.value.img==='')){
+      this.auth.Update(this.userId, {img:this.authForm.value.img}).subscribe(
+        data => {
+          alert('Update user successfully')
+          this.authForm.reset();
+          this.router.navigateByUrl('/profile');
+        },
+        err => {
+          console.log(err);
+          alert('Cannot update user!');
+        }
+      );
+    }
   }
 
   onChangeImg(e: any) {

@@ -17,7 +17,7 @@ export class EditImageComponent implements OnInit {
 
   name = new FormControl('', [Validators.required])
   details = new FormControl('', [Validators.required])
-  token = this.local.get('user').token
+
 
   constructor(private ActivatedRoute: ActivatedRoute,
     private imas: ImageService,
@@ -36,7 +36,6 @@ export class EditImageComponent implements OnInit {
       this.imas.getOneImage(this.imaID).subscribe(
         data => {
           this.post = data;
-          console.log(this.post)
         }, err => {
           console.log(err);
         }
@@ -47,10 +46,10 @@ export class EditImageComponent implements OnInit {
   }
 
   nameUpdate() {
-    console.log(this.name.value);
     this.imas.UpdateimaName(this.imaID, this.name.value).subscribe(
       data => {
         alert('Update name successfully')
+        this.onLoading();
         this.name.reset();
       },
       err => {
@@ -62,10 +61,10 @@ export class EditImageComponent implements OnInit {
   }
 
   detailsUpdate() {
-    console.log(this.details.value);
     this.imas.Updateimadetail(this.imaID, this.details.value).subscribe(
       data => {
         alert('Update details successfully')
+        this.onLoading();
         this.details.reset();
       },
       err => {
@@ -81,6 +80,16 @@ export class EditImageComponent implements OnInit {
       this.imas.deleteImg(this.imaID).subscribe(
         data => {
           alert('Delete image successfully')
+          this.imas.deleteComment(this.imaID).subscribe(
+            err => {
+              console.log(err);
+            }
+          )
+          this.imas.deleteLikeWithIma(this.imaID).subscribe(
+            err => {
+              console.log(err);
+            }
+          )
           this.router.navigate(['/profile'])
         },
         err => {
@@ -89,15 +98,7 @@ export class EditImageComponent implements OnInit {
         }
       )
 
-      this.imas.deleteComment(this.imaID).subscribe(
-        data => {
-          this.router.navigate(['/profile'])
-        },
-        err => {
-          console.log(err);
-        }
-      )
-    }catch(error){
+    } catch (error) {
       console.log('It is error')
     }
 

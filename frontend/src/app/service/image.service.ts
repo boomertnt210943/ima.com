@@ -45,7 +45,18 @@ export class ImageService {
   }
 
   getMyLike(){
-    return this.http.get<any>(this.url_like+'/all/'+this.local.get('user').id)
+    return this.http.get<any>(this.url_like+'/all/'+this.local.get('user').result.id)
+      .pipe(map(data => {
+        if (data) {
+          this.likeima = data;
+          console.log(this.likeima);
+        }
+        return this.likeima
+      }));
+  }
+
+  getMyLikeWihtIma(){
+    return this.http.get<any>(this.url_like+'/user/'+this.local.get('user').result.id)
       .pipe(map(data => {
         if (data) {
           this.likeima = data;
@@ -94,7 +105,7 @@ export class ImageService {
 
   addLike(ima_like: String) {
     return this.http
-      .post<any>(this.url_like, {"owner_id": this.local.get('user').id,"ima_like": ima_like})
+      .post<any>(this.url_like, {"owner_id": this.local.get('user').result.id,"ima_like": ima_like})
       .pipe(map(data => {
         console.log(data);
         return data;
@@ -107,13 +118,13 @@ export class ImageService {
     imageData.append("name", name);
     imageData.append("details", details);
     imageData.append("image", image, name);
-    imageData.append("owner_id", this.local.get('user').id);
+    imageData.append("owner_id", this.local.get('user').result.id);
     this.http
       .post<{ image: Image }>(this.url, imageData)
       .subscribe(imageData => {
         const image: Image = {
           _id: imageData.image._id,
-          owner_id: this.local.get('user').id,
+          owner_id: this.local.get('user').result.id,
           name: name,
           details: details,
           imagePath: imageData.image.imagePath,
@@ -121,7 +132,6 @@ export class ImageService {
         this.images.push(image);
         this.images$.next(this.images);
       })
-
   }
 
   UpdateimaName(id: any, newdata: string) {
@@ -149,8 +159,18 @@ export class ImageService {
         return data;
       }));
   }
+
   deleteComment(id:any){
     let url = `${this.url_comment}/delete/${id}`;
+    return this.http.delete(url,{ headers: this.headers })
+      .pipe(map(data => {
+        console.log(data);
+        return data;
+      }));
+  }
+
+  deleteLikeWithIma(id:any){
+    let url = `${this.url_like}/deletewithima/${id}`;
     return this.http.delete(url,{ headers: this.headers })
       .pipe(map(data => {
         console.log(data);

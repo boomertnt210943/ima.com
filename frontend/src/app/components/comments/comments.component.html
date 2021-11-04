@@ -1,8 +1,11 @@
-<div class="card border-info">
+<div class="card border-info w-auto">
     <h4 class="card-header"><i class="fa fa-comment"></i> All Comment</h4>
     <div class="card-body" *ngFor="let item of commentInImage">
-        <h5 class="card-title"><i class="fa fa-user-secret" aria-hidden="true" style="color: Tomato;"></i> {{item.nick_name}}</h5>
-        <p class="card-text">{{item.content}}</p>
-        <p class="card-text">______________</p>
+        <div class="card">
+            <h5 class="card-header"><i class="fa fa-user-secret" aria-hidden="true" style="color: Tomato;"></i> {{item.nick_name}}</h5>
+            <p class="card-body">
+                {{item.content}}
+            </p>
+        </div>
     </div>
 </div>

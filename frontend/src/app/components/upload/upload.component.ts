@@ -16,11 +16,10 @@ export class UploadComponent implements OnInit {
 
   image!: any;
   imageData!: string;
-  token: any;
 
 
   constructor(private ImageService: ImageService,private router: Router,private local:LocalStorageService) {
-    this.token = this.local.get('user').token
+
    }
 
   ngOnInit(): void {
@@ -53,6 +52,7 @@ export class UploadComponent implements OnInit {
     if(!(this.imageForm.value.image === ''||this.imageForm.value.name === ''||this.imageForm.value.details==='')){
       this.ImageService.addImage(this.imageForm.value.name, this.imageForm.value.image,this.imageForm.value.details)
       //this.imageForm.reset();
+      alert('คุณเพิ่มรูปภาพสำเร็จเเล้ว');
       this.router.navigate(['/home'])
     }else{
       alert('บอกอะไรเกี่ยวกับผลงานหน่อยดิ!!!');

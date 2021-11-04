@@ -34,7 +34,7 @@ export class AuthService {
 
   Update(id: any, userdata: any) {
     let url = `${this.baseUri}/update/${id}`;
-    return this.http.put(url, userdata, { headers: this.headers })
+    return this.http.put(url, userdata,{ headers: this.headers })
       .pipe(map(data => {
         console.log(data);
         return data;

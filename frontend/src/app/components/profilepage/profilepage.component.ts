@@ -15,7 +15,7 @@ export class ProfilepageComponent implements OnInit {
   constructor(private local: LocalStorageService, private auth: AuthService) {}
 
   ngOnInit(): void {
-    let id  = this.local.get('user').id;
+    let id  = this.local.get('user').result.id
     this.getUser(id);
   }
   getUser(id: any) {

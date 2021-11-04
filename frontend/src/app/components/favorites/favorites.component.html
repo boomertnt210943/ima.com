@@ -1,11 +1,13 @@
-<div class="row ">
-    <div *ngFor="let item of images" class="col-md-4">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let item of ownerlike" class="col-md-4">
         <div class="card" style="width: auto;">
-            <img [src]="item.imagePath" class="card-img-top" [alt]="item.imagePath">
+            <img [src]="item.image[0].imagePath" class="card-img-top" [alt]="item.imagePath">
             <div class="card-body ">
-                <h5 class="card-title ">{{item.name}}</h5>
-                <p class="card-text ">{{item.details}}</p>
-                <a routerLink="/edit/{{item._id}}" routerLinkActive="active" class="btn btn-primary ">Edit image</a>
+                <h5 class="card-title ">{{item.image[0].name}}</h5>
+                <p class="card-text ">{{item.image[0].details}}</p>
+                <button type="button" (click)="onClickDeleteLike(item._id)" class="btn btn-xl float-end">
+                    <h4><i class="fa fa-times-circle" aria-hidden="true" ></i></h4>
+                </button>
             </div>
         </div>
     </div>

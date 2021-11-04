@@ -13,18 +13,37 @@ import { LocalStorageService } from 'angular-web-storage';
 export class FavoritesComponent implements OnInit {
 
   @Input() images!: Image[];
+  ownerlike!: any;
   //images!: Image[];
   constructor(
     private imgS: ImageService,
     private router: Router,
     private local: LocalStorageService
-  ) { }
-
-  ngOnInit(): void {
+  ) {
 
   }
 
+  ngOnInit(): void {
+    this.onloadingLike();
+    console.log('work!');
+  }
+
   //
+
+  onloadingLike(){
+    try{
+      this.imgS.getMyLikeWihtIma().subscribe(
+        data=>{
+          console.log('this ' + data)
+          this.ownerlike = data;
+        }, err =>{
+          console.log(err)
+        }
+      );
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   onLoading(){
     try{
@@ -39,5 +58,10 @@ export class FavoritesComponent implements OnInit {
     }catch(error){
       console.log('It is error')
     }
+  }
+
+  onClickDeleteLike(id_ima: string){
+      console.log('it work!')
+      this.imgS.deleteLike(id_ima).subscribe(()=>{this.onloadingLike()});
   }
 }

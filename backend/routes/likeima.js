@@ -63,6 +63,19 @@ router.route('/delete/:id')
         })
     })
 
+router.route('/deletewithima/:id')
+    .delete((req, res) => {
+        LikeImage.deleteMany({ ima_like: req.params.id }, (error, data) => {
+            if (error) {
+                return (error);
+            } else {
+                res.status(200).json({
+                    msg: data
+                })
+            }
+        })
+    })
+
 router.route('/user/:id')
     .get((req, res, next) => {
         const idUser = req.params.id

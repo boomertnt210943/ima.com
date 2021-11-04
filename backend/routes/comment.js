@@ -3,6 +3,7 @@ const router = expressFunction.Router();
 const mongoose = require('mongoose');
 var Schema = require("mongoose").Schema;
 const ObjectId = mongoose.Types.ObjectId;
+const authorization = require('../config/authorize')
 
 const commentSchema = Schema({
     nick_name: { type: 'String', default: "ผู้ไม่ประสงค์เปิดเผื่อชื่อ" },

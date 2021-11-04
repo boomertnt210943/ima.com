@@ -31,11 +31,11 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
     ){
         this.onLoading();
         this.onloadingLike();
-        this.token = this.local.get('user').token
     }
 
 
   ngOnInit(): void {
+    console.log(this.local.get('user').result.id)
     this.like = false;
     console.log(this.local.get('user') === null);
     this.imgS.search.subscribe((val:any)=>{
@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit, OnChanges, DoCheck{
       this.router.navigate(['/signin']);
     }
   }
+
   onloadingLike(){
     try{
       this.imgS.getMyLike().subscribe(
