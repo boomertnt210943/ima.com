@@ -13,6 +13,7 @@ import { LocalStorageService } from 'angular-web-storage';
 export class FavoritesComponent implements OnInit {
 
   @Input() images!: Image[];
+  //images!: Image[];
   constructor(
     private imgS: ImageService,
     private router: Router,
@@ -22,6 +23,8 @@ export class FavoritesComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  //
 
   onLoading(){
     try{
@@ -37,5 +40,4 @@ export class FavoritesComponent implements OnInit {
       console.log('It is error')
     }
   }
-
 }

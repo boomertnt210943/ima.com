@@ -50,6 +50,18 @@ const getCommentAll = async(req, res) => {
     res.status(200).json(comment)
 };
 
+router.route('/delete/:id')
+    .delete((req, res) => {
+        Comment.deleteMany({ ima_comment: req.params.id }, (error, data) => {
+            if (error) {
+                return (error);
+            } else {
+                res.status(200).json({
+                    msg: data
+                })
+            }
+        })
+    })
 
 
 router.get('/allcom/:id', getCommentInIma);

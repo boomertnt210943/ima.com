@@ -23,7 +23,9 @@ export class ImageService {
   readonly url_like = "http://localhost:3000/like";
   private oneIma?: Image;
   private com?: Comment;
-  private likeima?: LikeImage;
+  private likeima?: LikeImage[];
+  //private likeimas: LikeImage[] = [];
+  //private likeimas$ = new Subject<LikeImage[]>()
   public imageList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
   //UserId = this.local.get('user').id;
@@ -141,6 +143,14 @@ export class ImageService {
 
   deleteImg(id:any){
     let url = `${this.url}/delete/${id}`;
+    return this.http.delete(url,{ headers: this.headers })
+      .pipe(map(data => {
+        console.log(data);
+        return data;
+      }));
+  }
+  deleteComment(id:any){
+    let url = `${this.url_comment}/delete/${id}`;
     return this.http.delete(url,{ headers: this.headers })
       .pipe(map(data => {
         console.log(data);
