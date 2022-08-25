@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200;400;500&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+.card-title {
+    font-family: 'Mitr', sans-serif;
+}
+
+.card-text {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+}

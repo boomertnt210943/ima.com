@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200;400;500&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+.card-title {
+    font-family: 'Mitr', sans-serif;
+}
+
+.card-text {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+}
+
+.red-color {
+    color: #e74c4c;
+}
+
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #e5ececea;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(208, 223, 222, 0.5), rgba(143, 211, 244, 0.5));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(205, 211, 210, 0.5), rgba(143, 211, 244, 0.5))
+}

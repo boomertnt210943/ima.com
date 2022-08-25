@@ -1,0 +1,21 @@
+<div class="container">
+    <br>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let item of images | filter:searchKey:'name'; index as i ">
+            <div class="card shadow p-3 mb-5" style="width: 100%;">
+                <a routerLink="/ima/{{item._id}}" routerLinkActive="active" class="nav-link active">
+                    <img [src]="item.imagePath" class="card-img-top" alt="{{item.imagePath}}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.details}}</p>
+
+                    <button type="button" (click)="ngClassMethod(item._id)" class="btn btn-xl float-end">
+                        <h4><i class="fa fa-heart " aria-hidden="true" [ngClass]="{'red-color': thisLike(item._id)}"></i></h4>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

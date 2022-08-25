@@ -1,0 +1,76 @@
+<section class="vh-100 bg-image" style="background-image: url('https://blog.artsper.com/wp-content/uploads/2019/07/tanning-644x430.jpg');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px">
+                        <div class="card-body p-5">
+                            <h2 class="card-title text-center">SIGN IN</h2>
+                            <h6 class="card-subtitle text-center mb-5 text-muted">Login account.</h6>
+                            <form [formGroup]="authForm">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" formControlName="email" />
+                                    <label for="floatingInput">Email address</label>
+                                    <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.email.errors?.required">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="f.email.errors?.email">
+                                            Email is incorrect!!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="floatingPassword" formControlName="password" />
+                                    <label for="floatingPassword">Password</label>
+                                    <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.password.errors?.required">
+                                            Password is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p></p>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" (click)="signIn()">SIGN IN</button>
+                                </div>
+                                <p class=" text-center text-muted mt-5 mb-0 ">You haven't account!
+                                    <!-- <a href="signup" class="fw-bold text-body "><u>Signup here</u></a> -->
+                                    <!--<button type="button" class="btn btn-info" (click)="clickSignUp()">Signup here</button> -->
+                                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">  SignUp</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row ">
+                <app-signup *ngIf="show"></app-signup>
+            </div> -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-tittle"></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <app-signup></app-signup>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

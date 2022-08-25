@@ -1,0 +1,31 @@
+<div class="container">
+    <br/>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <img [src]="post[0].imagePath" class="img-fluid rounded-start" alt="{{post[0].imagePath}}">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title">{{post[0].name}}</h2>
+                    <p class="card-text">{{post[0].details}}</p>
+                    <h2>______________</h2>
+                    <h4 class="card-title"><i class="fa fa-comment"></i> Comment.</h4>
+                    <form [formGroup]="commentForm">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="form-label">นามแฝง</label>
+                            <input type="text" class="form-control" formControlName='nick_name' placeholder="เป็นใครดีนะ">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="form-label">your comment</label>
+                            <input type="text" class="form-control" formControlName='content' placeholder="ลองบอกได้นะว่าอยากจะบอกอะไรกับภาพนี้">
+                        </div>
+                        <br />
+                        <p class="card-text"><button type="button" class="btn btn-primary" (click)="PostComment()">Enter</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-comments [CheckComment]="allComment"></app-comments>
+</div>

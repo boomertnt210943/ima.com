@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=Fredoka+One&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@300;400;500&family=Press+Start+2P&family=Pridi:wght@300&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+2:wght@400;500&family=Do+Hyeon&family=IBM+Plex+Sans+Thai&family=Jua&family=Mitr:wght@200&family=Press+Start+2P&family=Rampart+One&family=Righteous&family=Special+Elite&family=Viga&display=swap');
+.card-header {
+    font-family: 'Fredoka One', cursive;
+}
+
+.card-body {
+    font-family: 'Mitr', sans-serif;
+}
+
+.btn {
+    font-family: 'Mitr', sans-serif;
+}
+
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #e5ececea;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(206, 228, 226, 0.5), rgba(143, 211, 244, 0.5));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(202, 228, 228, 0.5), rgba(143, 211, 244, 0.5))
+}

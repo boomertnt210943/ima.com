@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: rgb(0, 179, 140);">
+    <div class="container-fluid">
+        <h1 class="navbar-brand" href="#">Ima.com</h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" *ngIf="showNav">
+                <li class="nav-item">
+                    <a routerLink="home" routerLinkActive="active" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="profile" routerLinkActive="active" class="nav-link active">Profile</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a routerLink="signin" routerLinkActive="active" class="nav-link active">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="signup" routerLinkActive="active" class="nav-link active">Sign Up</a>
+                </li> -->
+                <li class="nav-item">
+                    <a routerLink="upload" routerLinkActive="active" class="nav-link active">Upload</a>
+                </li>
+                <div class="d-flex col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="searchImg" (keyup)="search($event)" placeholder="Search">
+                </div>
+            </ul>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn" style="background-color: rgb(255, 255, 255);" *ngIf="showNav" (click)="signout()">Sign Out</button>
+        </div>
+    </div>
+</nav>
